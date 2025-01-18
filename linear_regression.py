@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
+from matplotlib.animation import FuncAnimation, PillowWriter
 from sklearn.metrics import mean_squared_error
 
 # Simulated dataset creation
@@ -70,15 +70,21 @@ def main():
     print(f"\nCoefficients (Normal Equation): {beta_normal}")
 
     # Gradient Descent
-    beta_gd, beta_history = gradient_descent_animated(X, y, learning_rate=0.02, iterations=1000)
+    beta_gd, beta_history = gradient_descent_animated(X, y, learning_rate=0.01, iterations=1000)
     print(f"\nCoefficients (Gradient Descent): {beta_gd}")
+
+    # Sample frames for animation
+    sampled_frames = np.linspace(0, len(beta_history) - 1, 100, dtype=int)
 
     # Initialize plot
     fig, ax, line = init_plot(data, beta_normal)
 
     # Create the animation
-    anim = FuncAnimation(fig, animate, frames=len(beta_history), 
-                         fargs=(line, X, beta_history), interval=10, blit=True)
+    anim = FuncAnimation(fig, animate, frames=sampled_frames, 
+                         fargs=(line, X, beta_history), interval=50, blit=True)
+
+    # Save animation as GIF
+    anim.save("gradient_descent.gif", writer=PillowWriter(fps=20))
 
     plt.show()
 
