@@ -2,42 +2,115 @@
 A  place to brush up on practical applications of linear algebra.
 
 # Project 1 - Linear Regression
-Predicting y from x. 
-y = mx + b + ϵ
-where ϵ is random noise
 
-## 1. Matrix Form:
-y = Xβ + ϵ
+```
+linear_regression.py
+```
 
-where:
-y is the target vector.
+## Derivation of the Normal Equation
 
-X is the design matrix (including a column of ones for the intercept).
+The **Normal Equation** is a closed-form solution that minimizes the MSE cost function to find the coefficients $\boldsymbol{\beta}$.
 
-β is the vector of coefficients to solve for.
+---
 
-## 2. Closed-form solution (Normal Equation):
-β = (𝑋.T 𝑋).inv() * 𝑋.T y
+## Problem Setup
+
+Linear regression will find $\boldsymbol{\beta}$ to fit a line to:
+
+$$
+\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \epsilon
+$$
+
+Where:
+- $\mathbf{y} \in \mathbb{R}^m$: observations.
+- $\mathbf{X} \in \mathbb{R}^{m \times n}$: inputs, where each row is a data point and each column is a feature. The first column is all ones to account for the intercept.
+- $\boldsymbol{\beta} \in \mathbb{R}^n$: vector of coefficients to learn.
+- $\epsilon \in \mathbb{R}^m$: noise vector injected into the model.
+- $m$: number of observations.
+
+Find $\boldsymbol{\beta}$ that minimizes the sum of squared errors (SSE) across data points.
+
+---
+
+## 1. Cost Function
+
+Cost function:
+
+$$
+C(\boldsymbol{\beta}) = \frac{1}{2m} \|\mathbf{y} - \mathbf{X}\boldsymbol{\beta}\|^2
+$$
+
+Where:
+
+$$
+\|\mathbf{y} - \mathbf{X}\boldsymbol{\beta}\|^2 = (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})^T (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})
+$$
+
+---
+
+## 2. Expand
+
+Expand the squared term:
+
+$$
+\|\mathbf{y} - \mathbf{X}\boldsymbol{\beta}\|^2 = \mathbf{y}^T\mathbf{y} - 2\mathbf{y}^T\mathbf{X}\boldsymbol{\beta} + \boldsymbol{\beta}^T\mathbf{X}^T\mathbf{X}\boldsymbol{\beta}
+$$
+
+The cost function becomes:
+
+$$
+C(\boldsymbol{\beta}) = \frac{1}{2m} \left( \mathbf{y}^T\mathbf{y} - 2\mathbf{y}^T\mathbf{X}\boldsymbol{\beta} + \boldsymbol{\beta}^T\mathbf{X}^T\mathbf{X}\boldsymbol{\beta} \right)
+$$
+
+---
+
+## 3. Cost Gradient
+
+To minimize $C(\boldsymbol{\beta})$, take the gradient wrt $\boldsymbol{\beta}$ and set it to zero:
+
+$$
+\frac{\partial C(\boldsymbol{\beta})}{\partial \boldsymbol{\beta}} = \frac{\partial}{\partial \boldsymbol{\beta}} \left( \frac{1}{2m} \|\mathbf{y} - \mathbf{X}\boldsymbol{\beta}\|^2 \right)
+$$
+
+Using the expanded form:
+
+$$
+\frac{\partial C(\boldsymbol{\beta})}{\partial \boldsymbol{\beta}} = \frac{1}{m} \left( -\mathbf{X}^T\mathbf{y} + \mathbf{X}^T\mathbf{X}\boldsymbol{\beta} \right)
+$$
+
+Set the gradient to zero for minimization:
+
+$$
+\mathbf{X}^T\mathbf{X}\boldsymbol{\beta} = \mathbf{X}^T\mathbf{y}
+$$
+
+---
+
+## 4. Solve for $ \boldsymbol{\beta} $
+
+Assume $\mathbf{X}^T\mathbf{X}$ is invertible (nonsingular):
+
+$$
+\boldsymbol{\beta} = (\mathbf{X}^T\mathbf{X})^{-1} \mathbf{X}^T\mathbf{y}
+$$
+
+This is the **Normal Equation**, which provides the optimal $ \boldsymbol{\beta} $ to minimize the cost function.
+
+---
+
+## Assumptions
+
+1. **Invertibility**: The matrix $\mathbf{X}^T\mathbf{X}$ must be invertible. If it’s not, we can just use SVD.
+2. **Linearity**: The relationship between the features and target is assumed to be linear.
+
+Regardless, ultimately we perform linear regression to find the coefficients. This derivation is just so we can check our work.
+
+---
+
+## Outcome
+
+Plot:
+
+![Gradient Descent Animation](gradient_descent.gif)
 
 
-## 3. Implement gradient descent to minimize the mean squared error:
-J(β) = (1/2n) ∥Xβ − y∥^2
-
-
-Update rule:
-βk + 1 = βk −n∇J(βk)
-
-where:
-
-∇J(β) = (1/n) X.T(Xβ − y)
-
-
-## 4. Compare Solutions
-
-Compare the coefficients β = [m, b] from 2. and 3.
-
-Plot above to visualize.
-
-
-## 5. Analyze Performance
-Compute MSE.
