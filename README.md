@@ -1,7 +1,7 @@
 # linear_algebra_fun
 A  place to brush up on practical applications of linear algebra.
 
-# Project 1 - Linear Regression
+# Project - Linear Regression
 
 ```
 linear_regression.py
