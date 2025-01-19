@@ -1,11 +1,10 @@
-# linear_algebra_fun
-A  place to brush up on practical applications of linear algebra.
-
 # Project - Linear Regression
 
 ```
 linear_regression.py
 ```
+
+![Gradient Descent Animation](gradient_descent.gif)
 
 ## Derivation of the Normal Equation
 
@@ -107,10 +106,12 @@ Regardless, ultimately we perform linear regression to find the coefficients. Th
 
 ---
 
-## Outcome
+# Additional Notes
 
-Plot:
+![Linear Algebra Notes & Worked Examples](LinAlgNotes.pdf)
 
-![Gradient Descent Animation](gradient_descent.gif)
+
+
+
 
 
