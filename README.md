@@ -85,7 +85,7 @@ $$
 
 ---
 
-## 4. Solve for $ \boldsymbol{\beta} $
+## 4. Solve for $\boldsymbol{\beta}$
 
 Assume $\mathbf{X}^T\mathbf{X}$ is invertible (nonsingular):
 
