@@ -93,7 +93,7 @@ $$
 \boldsymbol{\beta} = (\mathbf{X}^T\mathbf{X})^{-1} \mathbf{X}^T\mathbf{y}
 $$
 
-This is the **Normal Equation**, which provides the optimal $ \boldsymbol{\beta} $ to minimize the cost function.
+This is the **Normal Equation**, which provides the optimal $\boldsymbol{\beta}$ to minimize the cost function.
 
 ---
 
