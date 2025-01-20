@@ -1,3 +1,11 @@
+# Summary
+
+This project serves as a learning tool for brushing up on practical applications of Linear Algebra, Calculus, and Probability.
+
+I've chosen to apply these concepts to my areas of interest: robotics & quantitative finance.
+
+The projects will start small, but will hopefully grow into something interesting.
+
 # Project 1 - Linear Regression (appl. Lin Alg)
 
 ```
