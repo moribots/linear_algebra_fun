@@ -1,4 +1,4 @@
-# Project - Linear Regression
+# Project 1 - Linear Regression (appl. Lin Alg)
 
 ```
 linear_regression.py
@@ -106,12 +106,14 @@ Regardless, ultimately we perform linear regression to find the coefficients. Th
 
 ---
 
-# Additional Notes
+## Additional Notes
 
-![Linear Algebra Notes & Worked Examples](LinAlgNotes.pdf)
+[Linear Algebra Notes & Worked Examples](LinAlgNotes.pdf)
+
+# Project 2 - Backpropagation (appl. Calc)
 
 
+## Additional Notes
 
-
-
+[Calculus Notes & Worked Examples](CalcNotes.pdf)
 
