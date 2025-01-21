@@ -6,6 +6,11 @@ I've chosen to apply these concepts to my areas of interest: robotics & quantita
 
 The projects will start small, but will hopefully grow into something interesting.
 
+## Study Notes
+
+[Linear Algebra Notes & Worked Examples](LinAlgNotes.pdf)
+[Calculus Notes & Worked Examples](CalcNotes.pdf)
+
 # Project 1 - Linear Regression (appl. Lin Alg)
 
 ```
@@ -114,11 +119,13 @@ Regardless, ultimately we perform linear regression to find the coefficients. Th
 
 ---
 
-## Additional Notes
-
-[Linear Algebra Notes & Worked Examples](LinAlgNotes.pdf)
-
 # Project 2 - NN Backpropagation (appl. Calc)
+
+```
+backprop_nn.py
+```
+
+![NN Backpropagation Animation](backprop_nn.gif)
 
 
 
@@ -270,10 +277,3 @@ Activation Functions help with the following:
 ## Optional: Evaluate the Trained Model
 1. Use the trained network to make predictions on new data.
 2. Compute evaluation metrics (e.g., MSE).
-
-
-
-## Additional Notes
-
-[Calculus Notes & Worked Examples](CalcNotes.pdf)
-
