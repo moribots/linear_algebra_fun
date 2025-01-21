@@ -149,25 +149,25 @@ backprop_nn.py
 ## Step 3: Forward Propagation
 1. Compute the hidden layer activations:
 
-   $$
-   z_1 = W_1 x + b_1, \quad h = \sigma(z_1)
-   $$
+$$
+z_1 = W_1 x + b_1, \quad h = \sigma(z_1)
+$$
 
-   Where $\sigma$ is an activation function (e.g., ReLU: $\sigma(z) = \max(0, z)$, or sigmoid: $\sigma(z) = \frac{1}{1 + e^{-z}}$).
+Where $\sigma$ is an activation function (e.g., ReLU: $\sigma(z) = \max(0, z)$, or sigmoid: $\sigma(z) = \frac{1}{1 + e^{-z}}$).
 
 2. Compute the output:
 
-   $$
-   z_2 = W_2 h + b_2, \quad \hat{y} = z_2
-   $$
+$$
+z_2 = W_2 h + b_2, \quad \hat{y} = z_2
+$$
 
 3. Define the loss function:
 
-   $$
-   L = \frac{1}{N} \sum_{i=1}^N (y_i - \hat{y}_i)^2
-   $$
+$$
+L = \frac{1}{N} \sum_{i=1}^N (y_i - \hat{y}_i)^2
+$$
 
-   where $N$ is the number of training examples.
+where $N$ is the number of training examples.
 
 ---
 
@@ -176,11 +176,11 @@ Activation Functions help with the following:
 ### 1. Introduce Non-Linearity
 - **Problem**: Without activation functions, a neural network is just a stack of linear transformations:
   
-  $$
-  \mathbf{y} = \mathbf{W_2}(\mathbf{W_1}\mathbf{x} + \mathbf{b_1}) + \mathbf{b_2}
-  $$
+$$
+\mathbf{y} = \mathbf{W_2}(\mathbf{W_1}\mathbf{x} + \mathbf{b_1}) + \mathbf{b_2}
+$$
 
-  This makes the network behave like a linear model, regardless of its depth.
+This makes the network behave like a linear model, regardless of its depth.
 - **Solution**: Activation functions apply **non-linear transformations** at each layer, allowing the network to learn complex relationships between input and output.
 
 
@@ -195,9 +195,9 @@ Activation Functions help with the following:
 - Activation functions determine how much a neuron contributes to the output of the network.
 - Example: **ReLU (Rectified Linear Unit)** activation:
   
-  $$
-  \sigma(z) = \max(0, z)
-  $$
+$$
+\sigma(z) = \max(0, z)
+$$
 
   Neurons with $z \leq 0$ are effectively "turned off," introducing sparsity and improving computational efficiency.
 
@@ -214,53 +214,53 @@ Activation Functions help with the following:
 1. Compute gradients for the output layer:
    - Derivative of the loss with respect to output layer weights $W_2$:
 
-	$$
-	\frac{\partial L}{\partial W_2} = \frac{1}{N} \sum_{i=1}^N -2 (y_i - \hat{y}_i) h_i
-	$$
+$$
+\frac{\partial L}{\partial W_2} = \frac{1}{N} \sum_{i=1}^N -2 (y_i - \hat{y}_i) h_i
+$$
 
    - Derivative of the loss with respect to output layer bias $b_2$:
 
-	$$
-	\frac{\partial L}{\partial b_2} = \frac{1}{N} \sum_{i=1}^N -2 (y_i - \hat{y}_i)
-	$$
+$$
+\frac{\partial L}{\partial b_2} = \frac{1}{N} \sum_{i=1}^N -2 (y_i - \hat{y}_i)
+$$
 
 
 2. Compute gradients for the hidden layer:
    - Backpropagate the error through the activation function:
 
-	$$
-	\delta = \frac{\partial L}{\partial \hat{y}} W_2 \odot \sigma'(z_1)
-	$$
+$$
+\delta = \frac{\partial L}{\partial \hat{y}} W_2 \odot \sigma'(z_1)
+$$
 
-	$\odot$ is element-wise multiplication.
+$\odot$ is element-wise multiplication.
 
-   - Derivative of the loss with respect to hidden layer weights $W_1$:
+- Derivative of the loss with respect to hidden layer weights $W_1$:
 
-	$$
-	\frac{\partial L}{\partial W_1} = \frac{1}{N} \sum_{i=1}^N \delta_i x_i
-	$$
+$$
+\frac{\partial L}{\partial W_1} = \frac{1}{N} \sum_{i=1}^N \delta_i x_i
+$$
 
-   - Derivative of the loss with respect to hidden layer bias $b_1$:
+- Derivative of the loss with respect to hidden layer bias $b_1$:
 
-	$$
-	\frac{\partial L}{\partial b_1} = \frac{1}{N} \sum_{i=1}^N \delta_i
-	$$
+$$
+\frac{\partial L}{\partial b_1} = \frac{1}{N} \sum_{i=1}^N \delta_i
+$$
 
 
 3. Update weights and biases:
    - Output layer:
 
-	$$
-	W_2 \gets W_2 - \alpha \frac{\partial L}{\partial W_2}, \quad b_2 \gets b_2 - \alpha \frac{\partial L}{\partial b_2}
-	$$
+$$
+W_2 \gets W_2 - \alpha \frac{\partial L}{\partial W_2}, \quad b_2 \gets b_2 - \alpha \frac{\partial L}{\partial b_2}
+$$
 
    - Hidden layer:
 
-	$$
-	W_1 \gets W_1 - \alpha \frac{\partial L}{\partial W_1}, \quad b_1 \gets b_1 - \alpha \frac{\partial L}{\partial b_1}
-	$$
+$$
+W_1 \gets W_1 - \alpha \frac{\partial L}{\partial W_1}, \quad b_1 \gets b_1 - \alpha \frac{\partial L}{\partial b_1}
+$$
 
-   where $\alpha$ is the learning rate.
+where $\alpha$ is the learning rate.
 
 ---
 
