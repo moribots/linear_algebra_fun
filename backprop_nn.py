@@ -130,24 +130,28 @@ class NN:
 		- Y: True labels.
 		- output: Predicted output from forward propagation.
 		"""
-		m = X.shape[1]  # # of examples
+		m = X.shape[1]  # num of examples
+
+		# See README.md for variable derivations.
 
 		# Compute gradients for the output layer
-		dz2 = mse_deriv(Y, output)  # Derivative of loss w.r.t. z2
-		dw2 = (1 / m) * np.dot(dz2, self.a1.T)  # Gradient of w2
-		db2 = (1 / m) * np.sum(dz2, axis=1, keepdims=True)  # Gradient of b2
+		dL_dyhat = mse_deriv(Y, output)  # Derivative of loss w.r.t. y_hat (z2)
+		dL_dz2 = dL_dyhat
+		
+		dL_dw2 = (1 / m) * np.dot(dL_dz2, self.a1.T)  # Gradient of w2
+		dL_db2 = (1 / m) * np.sum(dL_dz2, axis=1, keepdims=True)  # Gradient of b2
 
 		# Compute gradients for the hidden layer
-		da1 = np.dot(self.w2.T, dz2)  # Backpropagate error to hidden layer
-		dz1 = da1 * relu_deriv(self.z1)  # Apply derivative of ReLU
-		dw1 = (1 / m) * np.dot(dz1, X.T)  # Gradient of w1
-		db1 = (1 / m) * np.sum(dz1, axis=1, keepdims=True)  # Gradient of b1
+		dL_da1 = np.dot(self.w2.T, dL_dz2)  # Backpropagate error to hidden layer
+		dL_dz1 = dL_da1 * relu_deriv(self.z1)  # Apply derivative of ReLU
+		dL_dw1 = (1 / m) * np.dot(dL_dz1, X.T)  # Gradient of w1
+		dL_db1 = (1 / m) * np.sum(dL_dz1, axis=1, keepdims=True)  # Gradient of b1
 
 		# Update weights and biases using gradient descent
-		self.w2 -= self.learning_rate * dw2
-		self.b2 -= self.learning_rate * db2
-		self.w1 -= self.learning_rate * dw1
-		self.b1 -= self.learning_rate * db1
+		self.w2 -= self.learning_rate * dL_dw2
+		self.b2 -= self.learning_rate * dL_db2
+		self.w1 -= self.learning_rate * dL_dw1
+		self.b1 -= self.learning_rate * dL_db1
 
 	def train(self, X, Y, epochs):
 		"""
