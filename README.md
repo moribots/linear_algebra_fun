@@ -9,6 +9,7 @@ The projects will start small, but will hopefully grow into something interestin
 ## Study Notes
 
 [Linear Algebra Notes & Worked Examples](LinAlgNotes.pdf)
+
 [Calculus Notes & Worked Examples](CalcNotes.pdf)
 
 # Project 1 - Linear Regression (appl. Lin Alg)
